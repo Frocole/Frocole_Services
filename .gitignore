@@ -1,0 +1,10 @@
+workspace.code-workspace
+DataBaseTabellen/*.PNG
+DataBaseTabellen/*.SQL
+*.zip
+*.md
+DataBaseTabellen/
+swagger.json
+swagger.yaml
+Old Readme.md texts.txt
+config.inc
