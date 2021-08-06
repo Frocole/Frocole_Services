@@ -6,33 +6,53 @@
 # Disable web access to *.inc, *.sql and *.png files:
 #
 #<FilesMatch  "\.(inc|sql|png)$>
-#	Order allow,deny
+#	order allow,deny
 #	deny from all
 #</FilesMatch >
 
 #
-# OR disable web access to the config.inc file:
+# OR Disable web access to the config.inc file:
 #
-<Files config.inc>
-  Order Allow,Deny
-  Deny from all
+<Files "config.inc">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny all
+  </IfModule>
 </Files>
 
 #
 # veg OPTIONAL only allow POST access:
 #
 <LimitExcept POST>
-  Order Allow,Deny
-  Deny from all
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny all
+  </IfModule>
 </LimitExcept>
 
-#
-# veg OPTIONAL only allow GET access to retrieve info text:
+# OPTIONAL only allow GET access to retrieve info text:
 #
 <Files GetFrocoleInfo.php>
   <LimitExcept GET>
-    Order Allow,Deny
-    Deny from all
+    <IfModule mod_authz_core.c>
+      Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+      Order allow,deny
+      Deny all
+    </IfModule>
   </LimitExcept>
 </Files>
 
+#
+# Disable web access to the .git folder:
+#
+#<Directory "/frocole/.git">
+#  Deny all
+#</Directory>
