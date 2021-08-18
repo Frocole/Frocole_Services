@@ -7,7 +7,7 @@
 	$password = 	$conn->real_escape_string($_POST["password"]);
 	//$userid = 		$conn->real_escape_string($_POST["userid"]);
 	$groupid = 		$conn->real_escape_string($_POST["groupid"]);
-	$courseid = 	$conn->real_escape_string($_POST["courseid"]);
+	//$courseid = 	$conn->real_escape_string($_POST["courseid"]);
 	$public = 		$conn->real_escape_string($_POST["public"]);
 
 	// 	Create query.
