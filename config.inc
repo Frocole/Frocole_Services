@@ -7,14 +7,11 @@
     $develop = true;
   
     // DEBUG SETTINGS.
-    // echo ini_get("mysqli.default_host");
-    // echo ini_get("mysqli.default_user");
-    // echo ini_get("mysqli.default_pw");
     // echo "Database: $db";
     // echo "Developer: $develop";
   
     // Make MYSQLI Connection.
-    $conn = new mysqli('host', 'username', 'password'); // ENTER Credentials here
+    $conn = new mysqli('host', 'username', 'password', $db, 'port'); // ENTER Credentials and other MySql info here
 
     // a) Verify MYSQLI connection.    
     //
