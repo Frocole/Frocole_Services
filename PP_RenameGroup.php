@@ -12,7 +12,7 @@
 	// Create query.
 	//
 	$query = "
-	UPDATE Groups
+	UPDATE $db.Groups
 	SET GroupNickname = '$groupnickname'
 	WHERE 
 	GroupID = $groupid

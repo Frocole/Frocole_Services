@@ -9,7 +9,7 @@
     
     // Create query.
     //
-    $query = "SELECT * FROM Groups WHERE CourseID = 
+    $query = "SELECT * FROM $db.Groups WHERE CourseID = 
 	(
 	SELECT CourseID 
 	FROM Courses

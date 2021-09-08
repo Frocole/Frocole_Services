@@ -40,7 +40,7 @@
 				UserAndGroupRelations.GroupID IN 
 				(
 					SELECT GroupID 
-					FROM Groups
+					FROM $db.Groups
 					WHERE CourseID IN 
 					(
 						SELECT CourseID
