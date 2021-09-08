@@ -23,7 +23,7 @@
 		GroupID IN 
 		( 	
 			SELECT GroupID 
-			FROM Groups 
+			FROM $db.Groups 
 			WHERE CourseID = '$courseid' 			
 		) 
 	) 

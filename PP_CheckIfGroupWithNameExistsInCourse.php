@@ -10,7 +10,7 @@
 	
 	// Create query.
 	//
-	$query = "SELECT * FROM Groups 
+	$query = "SELECT * FROM $db.Groups 
 	WHERE GroupNickname = '$groupnickname' AND
 	CourseID = 
 	(

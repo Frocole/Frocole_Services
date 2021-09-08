@@ -11,7 +11,7 @@
 	// Create query.
 	//
 	$query = "
-	INSERT INTO Groups (GroupNickname, CourseID)
+	INSERT INTO $db.Groups (GroupNickname, CourseID)
 	VALUES 
 	(
 	'$groupnickname',	
