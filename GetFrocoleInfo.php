@@ -14,7 +14,11 @@
 
 	error_log("[".__FILE__."] Info: Emitting results", 0);
 
-	//show data for each row
+	if (!headers_sent()) {
+		header('Cache-Control: no-store, max-age=0');
+    }
+
+    //show data for each row
 	$rows = array();
 	while($r = mysqli_fetch_assoc($sth))
 	{

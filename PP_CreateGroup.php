@@ -33,6 +33,10 @@
 
 	error_log("[".__FILE__."] Info: Emitting results", 0);
 
+	if (!headers_sent()) {
+		header('Cache-Control: no-store, max-age=0');
+    }
+
 	// Apply query and echo outcome.
 	//
 	$result = $conn->query($query);
