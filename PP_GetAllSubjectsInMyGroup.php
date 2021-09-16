@@ -1,86 +1,94 @@
 <?php
+	error_log("[".__FILE__."] Info: Started", 0);
+
     require_once dirname(__FILE__).'/config.inc';
 
-    // Retrieve input.    
+    // Retrieve input.
     //
     $username = 	$conn->real_escape_string($_POST["username"]);
     $password = 	$conn->real_escape_string($_POST["password"]);
     $groupid = 		$conn->real_escape_string($_POST["groupid"]);
     $courseid = 	$conn->real_escape_string($_POST["courseid"]);
-    
+
 	// Create query.
 	//
-    $query = 
-    "	
-	SELECT Users.UserID, Users.Nickname, UserAndGroupRelations.Public 
-	FROM Users 	
+    $query =
+    "
+	SELECT Users.UserID, Users.Nickname, UserAndGroupRelations.Public
+	FROM Users
 	INNER JOIN UserAndGroupRelations ON Users.UserID = UserAndGroupRelations.UserID
-	WHERE 
+	WHERE
 	UserAndGroupRelations.GroupID = '$groupid'
-	AND Users.UserID IN 
-		(	
+	AND Users.UserID IN
+		(
 			SELECT UserAndGroupRelations.UserID
 			FROM UserAndGroupRelations
-			WHERE 
+			WHERE
 			UserAndGroupRelations.GroupID = '$groupid'
 			AND
 			(
-				UserAndGroupRelations.GroupID IN 
+				UserAndGroupRelations.GroupID IN
 				(
 					SELECT UserAndGroupRelations.GroupID
 					FROM UserAndGroupRelations
 					WHERE UserAndGroupRelations.UserID =
 					(
-						SELECT Users.UserID 
-						FROM Users 	
+						SELECT Users.UserID
+						FROM Users
 						WHERE Users.Username = '$username' AND Users.Password = '$password'
 					)
 				)
-				OR 
-				UserAndGroupRelations.GroupID IN 
+				OR
+				UserAndGroupRelations.GroupID IN
 				(
-					SELECT GroupID 
+					SELECT GroupID
 					FROM $db.Groups
-					WHERE CourseID IN 
+					WHERE CourseID IN
 					(
 						SELECT CourseID
 						FROM Courses
 							WHERE CourseID = '$courseid'
-							AND LeraarUserID = 
+							AND LeraarUserID =
 							(
-								SELECT Users.UserID 
-								FROM Users 	
+								SELECT Users.UserID
+								FROM Users
 								WHERE Users.Username = '$username' AND Users.Password = '$password'
 							)
 					)
 				)
 			)
-			
+
 		)
 		AND
 		Users.UserID IN
 		(
 			SELECT UserAndCourseRelations.UserID
 			FROM UserAndCourseRelations
-			WHERE UserAndCourseRelations.CourseID = '$courseid'		
+			WHERE UserAndCourseRelations.CourseID = '$courseid'
 		)
-		AND NOT Users.UserID = 
+		AND NOT Users.UserID =
 		(
-			SELECT LeraarUserID 
+			SELECT LeraarUserID
 			FROM Courses
-			WHERE CourseID = '$courseid'		
+			WHERE CourseID = '$courseid'
 		)
 	";
-    
-    $sth = $conn->query($query);    
-    
+
+    $sth = $conn->query($query);
+
 	// Show data for each row.
     //
     $rows = array();
-	while($r = $sth->fetch_assoc()) 
+	while($r = $sth->fetch_assoc())
 	{
     	$rows[] = $r;
 	}
+
+	if (!headers_sent()) {
+    	header('Content-Type: application/json');
+    }
+
+	error_log("[".__FILE__."] Info: Emitting results", 0);
 
     print json_encode($rows);
 ?>

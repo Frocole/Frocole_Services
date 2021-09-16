@@ -1,4 +1,6 @@
 <?php
+	error_log("[".__FILE__."] Info: Started", 0);
+
     require_once dirname(__FILE__).'/config.inc';
 
 	// Retrieve input.
@@ -8,29 +10,31 @@
 	$groupid = 			$conn->real_escape_string($_POST["groupid"]);
 	$courseid = 		$conn->real_escape_string($_POST["courseid"]);
 	$groupnickname = 	$conn->real_escape_string($_POST["groupnickname"]);
-	
+
 	// Create query.
 	//
 	$query = "
 	UPDATE $db.Groups
 	SET GroupNickname = '$groupnickname'
-	WHERE 
+	WHERE
 	GroupID = $groupid
 	AND
-	CourseID =	
+	CourseID =
 	(
-		SELECT CourseID 
+		SELECT CourseID
 		FROM Courses
-		WHERE CourseID = $courseid 
-		AND LeraarUserID = 
+		WHERE CourseID = $courseid
+		AND LeraarUserID =
 		(
-			SELECT UserID 
-			FROM Users 
-			WHERE Username = '$username' 
+			SELECT UserID
+			FROM Users
+			WHERE Username = '$username'
 			AND Password = '$password'
-		)	
+		)
 	)
 	";
+
+	error_log("[".__FILE__."] Info: Emitting results", 0);
 
 	// Apply query and echo outcome.
 	//
