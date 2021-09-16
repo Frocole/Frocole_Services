@@ -43,11 +43,12 @@
 		$rows[] = $r;
 	}
 
+	error_log("[".__FILE__."] Info: Emitting results", 0);
+
 	if (!headers_sent()) {
+ 		header('Cache-Control: no-store, max-age=0');
     	header('Content-Type: application/json');
     }
-
-	error_log("[".__FILE__."] Info: Emitting results", 0);
 
 	print json_encode($rows);
 ?>

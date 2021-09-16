@@ -39,6 +39,7 @@
 	}
 
 	if (!headers_sent()) {
+ 		header('Cache-Control: no-store, max-age=0');
     	header('Content-Type: application/json');
     }
 
