@@ -8,9 +8,11 @@
 	$username = $conn->real_escape_string($_POST["username"]);
 	$password = $conn->real_escape_string($_POST["password"]);
 
+	$segment = $conn->real_escape_string($_SERVER['QUERY_STRING']);
+
 	// Create query.
 	//
-	$query = "SELECT * FROM Users WHERE Username = '$username' AND Password = '$password'";
+	$query = "SELECT * FROM Users WHERE Username = '$username' AND Password = '$password' AND SegmentID IN (SELECT SegmentID FROM segments WHERE SegmentName='$segment')";
 
 	$sth = $conn->query($query);
 

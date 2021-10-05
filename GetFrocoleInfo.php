@@ -3,12 +3,13 @@
 
 	require_once dirname(__FILE__).'/config.inc';
 
+	// Retrieve input.
+	$segment = $conn->real_escape_string($_SERVER['QUERY_STRING']);
+
 	// Create query.
-	$query =
-	"
+	$query = "
 	SELECT infotext
-	FROM `infotexten`
-	";
+	FROM `infotexten` WHERE SegmentID IN (SELECT SegmentID FROM Segments WHERE SegmentName='$segment')";
 
 	$sth = mysqli_query($conn,$query);
 
