@@ -9,7 +9,7 @@
 	// Create query.
 	$query = "
 	SELECT infotext
-	FROM `infotexten` WHERE SegmentID IN (SELECT SegmentID FROM Segments WHERE SegmentName='$segment')";
+	FROM `infotexten` WHERE SegmentID IN (SELECT SegmentID FROM segments WHERE SegmentName='$segment')";
 
 	$sth = mysqli_query($conn,$query);
 

@@ -14,45 +14,45 @@
 	//
     $query =
     "
-	SELECT Users.UserID, Users.Nickname, UserAndGroupRelations.Public
-	FROM Users
-	INNER JOIN UserAndGroupRelations ON Users.UserID = UserAndGroupRelations.UserID
+	SELECT users.UserID, users.Nickname, userandgrouprelations.Public
+	FROM users
+	INNER JOIN userandgrouprelations ON users.UserID = userandgrouprelations.UserID
 	WHERE
-	UserAndGroupRelations.GroupID = '$groupid'
-	AND Users.UserID IN
+	userandgrouprelations.GroupID = '$groupid'
+	AND users.UserID IN
 		(
-			SELECT UserAndGroupRelations.UserID
-			FROM UserAndGroupRelations
+			SELECT userandgrouprelations.UserID
+			FROM userandgrouprelations
 			WHERE
-			UserAndGroupRelations.GroupID = '$groupid'
+			userandgrouprelations.GroupID = '$groupid'
 			AND
 			(
-				UserAndGroupRelations.GroupID IN
+				userandgrouprelations.GroupID IN
 				(
-					SELECT UserAndGroupRelations.GroupID
-					FROM UserAndGroupRelations
-					WHERE UserAndGroupRelations.UserID =
+					SELECT userandgrouprelations.GroupID
+					FROM userandgrouprelations
+					WHERE userandgrouprelations.UserID =
 					(
-						SELECT Users.UserID
-						FROM Users
-						WHERE Users.Username = '$username' AND Users.Password = '$password'
+						SELECT users.UserID
+						FROM users
+						WHERE users.Username = '$username' AND users.Password = '$password'
 					)
 				)
 				OR
-				UserAndGroupRelations.GroupID IN
+				userandgrouprelations.GroupID IN
 				(
 					SELECT GroupID
-					FROM $db.Groups
+					FROM $db.groups
 					WHERE CourseID IN
 					(
 						SELECT CourseID
-						FROM Courses
+						FROM courses
 							WHERE CourseID = '$courseid'
 							AND LeraarUserID =
 							(
-								SELECT Users.UserID
-								FROM Users
-								WHERE Users.Username = '$username' AND Users.Password = '$password'
+								SELECT users.UserID
+								FROM users
+								WHERE users.Username = '$username' AND users.Password = '$password'
 							)
 					)
 				)

@@ -12,16 +12,16 @@
 
 	// Create query.
 	//
-	$query = "SELECT * FROM $db.Groups
+	$query = "SELECT * FROM $db.groups
 	WHERE GroupNickname = '$groupnickname' AND
 	CourseID =
 	(
 	SELECT CourseID
-	FROM Courses
+	FROM courses
 	WHERE CourseID = '$courseid' AND LeraarUserID =
 		(
 		SELECT UserID
-		FROM Users
+		FROM users
 		WHERE Username = '$username'
 		AND Password = '$password'
 		)

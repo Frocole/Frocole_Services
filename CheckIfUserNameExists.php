@@ -11,7 +11,7 @@
 
     // Create query.
     //
-    $query = "SELECT Username FROM Users WHERE Username = '$username' AND SegmentID IN (SELECT SegmentID FROM segments WHERE SegmentName='$segment')";
+    $query = "SELECT Username FROM users WHERE Username = '$username' AND SegmentID IN (SELECT SegmentID FROM segments WHERE SegmentName='$segment')";
 
     // Apply query and echo outcome.
     //

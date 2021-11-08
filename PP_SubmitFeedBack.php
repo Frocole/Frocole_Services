@@ -15,14 +15,14 @@
 	// Create query.
 	//
 	$query = "
-		INSERT INTO FeedBackItems (GroupID, FeedbackSuplierID, Subject, Parameter, Score)
+		INSERT INTO feedbackitems (GroupID, FeedbackSuplierID, Subject, Parameter, Score)
 		VALUES
 		(
 			'$groupid',
 			(
-				SELECT Users.UserID
-				FROM Users
-				WHERE Users.Username = '$username' AND Users.Password = '$password'
+				SELECT users.UserID
+				FROM users
+				WHERE users.Username = '$username' AND users.Password = '$password'
 			),
 			'$subject',
 			'$parameter',

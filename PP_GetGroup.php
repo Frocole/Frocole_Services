@@ -10,14 +10,14 @@
 	// Create query.
 	//
 	$query = "
-	SELECT $db.Groups.GroupID, $db.Groups.GroupNickname, $db.Groups.CourseID, UserAndGroupRelations.Public
-	FROM $db.Groups
-	INNER JOIN UserAndGroupRelations ON $db.Groups.GroupID = UserAndGroupRelations.GroupID
+	SELECT $db.groups.GroupID, $db.groups.GroupNickname, $db.groups.CourseID, userandgrouprelations.Public
+	FROM $db.groups
+	INNER JOIN userandgrouprelations ON $db.groups.GroupID = userandgrouprelations.GroupID
 	WHERE CourseID = '$courseid'
-	AND UserAndGroupRelations.USERID =
+	AND userandgrouprelations.UserID =
 	(
         SELECT UserID
-        FROM Users
+        FROM users
         WHERE Username = '$username'
         AND Password = '$password'
 	)";

@@ -12,7 +12,7 @@
 
 	// Create query.
 	//
-	$query = "SELECT * FROM Users WHERE Username = '$username' AND Password = '$password' AND SegmentID IN (SELECT SegmentID FROM segments WHERE SegmentName='$segment')";
+	$query = "SELECT * FROM users WHERE Username = '$username' AND Password = '$password' AND SegmentID IN (SELECT SegmentID FROM segments WHERE SegmentName='$segment')";
 
 	$sth = $conn->query($query);
 

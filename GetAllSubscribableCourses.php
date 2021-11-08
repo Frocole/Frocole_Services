@@ -7,14 +7,14 @@
     //$userid = $conn->real_escape_string($_POST["userid"]);
     //$username = $conn->real_escape_string($_POST["username"]);
     //$password = $conn->real_escape_string($_POST["password"]);
-	
+
 	$segment = $conn->real_escape_string($_SERVER['QUERY_STRING']);
 
 	// Create query.
     $query = "
 	SELECT *
-	FROM Courses
-	WHERE Courses.CourseActive = '1' AND Courses.SegmentID IN (SELECT SegmentID FROM Segments WHERE SegmentName='$segment')";
+	FROM courses
+	WHERE courses.CourseActive = '1' AND courses.SegmentID IN (SELECT SegmentID FROM segments WHERE SegmentName='$segment')";
 
     $sth = $conn->query($query);
 

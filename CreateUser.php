@@ -10,10 +10,10 @@
     $nickname = $conn->real_escape_string($_POST["nickname"]);
 
     $segment = $conn->real_escape_string($_SERVER['QUERY_STRING']);
-    
+
     // Create query.
     //
-    $query = "INSERT INTO Users (Username, Password, Nickname, SegmentID) VALUES ('$username','$password','$nickname', (SELECT SegmentID FROM Segments WHERE SegmentName = '$segment'));";
+    $query = "INSERT INTO users (Username, Password, Nickname, SegmentID) VALUES ('$username','$password','$nickname', (SELECT SegmentID FROM segments WHERE SegmentName = '$segment'));";
 
     error_log("[".__FILE__."] Info: Emitting results", 0);
 

@@ -14,7 +14,7 @@
 	// Create query.
 	//
     $query = "
-	INSERT INTO UserAndGroupRelations
+	INSERT INTO userandgrouprelations
 	(
 		UserID,
 		GroupID,
@@ -23,9 +23,9 @@
 	VALUES
 	(
 		(
-				SELECT UserID From UserAndCourseRelations WHERE UserID = '$userid'
-				AND CourseID IN (SELECT CourseID FROM Courses WHERE CourseID = '$courseid'
-				AND LeraarUserID = (SELECT UserID FROM Users WHERE Username = '$username'
+				SELECT UserID From userandcourserelations WHERE UserID = '$userid'
+				AND CourseID IN (SELECT CourseID FROM courses WHERE CourseID = '$courseid'
+				AND LeraarUserID = (SELECT UserID FROM users WHERE Username = '$username'
 				AND Password = '$password'))
 		),
 		'$groupid',

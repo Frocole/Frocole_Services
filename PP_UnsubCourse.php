@@ -11,9 +11,9 @@
 
 	// Create query.
 	//
-	$query = "DELETE FROM UserAndCourseRelations
+	$query = "DELETE FROM userandcourserelations
 	WHERE
-	UserID = (SELECT UserID FROM Users WHERE Users.Username = '$username' AND Users.Password = '$password')
+	UserID = (SELECT UserID FROM users WHERE users.Username = '$username' AND users.Password = '$password')
 	AND
 	CourseID = '$courseid'";
 

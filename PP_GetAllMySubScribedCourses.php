@@ -13,19 +13,19 @@
 	$query =
 	"
 	SELECT *
-	FROM Courses
+	FROM courses
 	WHERE CourseID IN
 		(
-			SELECT UserAndCourseRelations.CourseID
-			FROM UserAndCourseRelations
-			WHERE UserAndCourseRelations.UserID =
+			SELECT userandcourserelations.CourseID
+			FROM userandcourserelations
+			WHERE userandcourserelations.UserID =
 			(
-				SELECT Users.UserID
-				FROM Users
-				WHERE Users.Username = '$username' AND Users.Password = '$password'
+				SELECT users.UserID
+				FROM users
+				WHERE users.Username = '$username' AND users.Password = '$password'
 			)
 		)
-		AND Courses.CourseActive = 1
+		AND courses.CourseActive = 1
 	";
 
 	$sth = $conn->query($query);

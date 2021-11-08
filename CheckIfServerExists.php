@@ -17,7 +17,7 @@
 
     // Create query.
     //
-    $query = "SELECT SegmentName FROM Segments WHERE SegmentName = '$segment'";
+    $query = "SELECT SegmentName FROM segments WHERE SegmentName = '$segment'";
 
     // Apply query and echo outcome.
     //
