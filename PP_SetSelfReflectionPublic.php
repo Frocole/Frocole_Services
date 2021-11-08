@@ -15,7 +15,7 @@
 	// 	Create query.
 	//
 	$query = "
-	UPDATE UserAndGroupRelations
+	UPDATE userandgrouprelations
 	SET Public = '$public'
 	WHERE
 	GroupID = '$groupid'
@@ -23,7 +23,7 @@
 	UserID =
 	(
 		SELECT UserID
-		FROM Users
+		FROM users
 		WHERE Username = '$username'
 		AND Password = '$password'
 	)

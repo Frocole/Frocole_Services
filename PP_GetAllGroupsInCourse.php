@@ -14,11 +14,11 @@
     $query = "SELECT * FROM $db.Groups WHERE CourseID =
 	(
 	SELECT CourseID
-	FROM Courses
+	FROM courses
 	WHERE CourseID = '$courseid' AND LeraarUserID =
 		(
 		SELECT UserID
-		FROM Users
+		FROM users
 		WHERE Username = '$username'
 		AND Password = '$password'
 		)

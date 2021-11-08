@@ -14,33 +14,33 @@
 	//
 	$query =
 	"
-	SELECT Users.UserID, Users.Nickname
-	FROM Users
+	SELECT users.UserID, users.Nickname
+	FROM users
 	WHERE
-	NOT Users.UserID IN
+	NOT users.UserID IN
 	(
 		SELECT UserID
-		FROM UserAndGroupRelations
+		FROM userandgrouprelations
 		WHERE
 		GroupID IN
 		(
 			SELECT GroupID
-			FROM $db.Groups
+			FROM $db.groups
 			WHERE CourseID = '$courseid'
 		)
 	)
-	AND Users.UserID IN
+	AND users.UserID IN
 	(
 		SELECT UserID
-		FROM UserAndCourseRelations
+		FROM userandcourserelations
 		WHERE CourseID =
 		(
 			SELECT CourseID
-			FROM Courses
+			FROM courses
 			WHERE CourseID = '$courseid' AND LeraarUserID =
 			(
 				SELECT UserID
-				FROM Users
+				FROM users
 				WHERE Username = '$username'
 				AND Password = '$password'
 			)

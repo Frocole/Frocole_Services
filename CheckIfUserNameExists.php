@@ -7,9 +7,11 @@
     //
     $username = $conn->real_escape_string($_POST["username"]);
 
+    $segment = $conn->real_escape_string($_SERVER['QUERY_STRING']);
+
     // Create query.
     //
-    $query = "SELECT Username FROM Users WHERE Username = '$username'";
+    $query = "SELECT Username FROM users WHERE Username = '$username' AND SegmentID IN (SELECT SegmentID FROM segments WHERE SegmentName='$segment')";
 
     // Apply query and echo outcome.
     //

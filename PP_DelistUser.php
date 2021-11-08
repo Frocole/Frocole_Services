@@ -14,10 +14,10 @@
 	// Create query.
 	//
 	$query = "
-	DELETE FROM UserAndGroupRelations
-	WHERE UserID = (SELECT UserID From UserAndCourseRelations WHERE UserID = '$userid'
-	AND CourseID IN(SELECT CourseID FROM Courses WHERE CourseID = '$courseid'
-	AND LeraarUserID = (SELECT UserID FROM Users WHERE Username = '$username' AND Password = '$password')))
+	DELETE FROM userandgrouprelations
+	WHERE UserID = (SELECT UserID From userandcourserelations WHERE UserID = '$userid'
+	AND CourseID IN(SELECT CourseID FROM courses WHERE CourseID = '$courseid'
+	AND LeraarUserID = (SELECT UserID FROM users WHERE Username = '$username' AND Password = '$password')))
 	AND
 	GroupID = '$groupid'";
 

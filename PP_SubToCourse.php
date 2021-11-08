@@ -18,8 +18,8 @@
 
 	// 	Create query.
 	//
-	$query = "INSERT INTO UserAndCourseRelations (UserID, CourseID) VALUES (
-	(SELECT UserID FROM Users WHERE Users.Username = '$username' AND Users.Password = '$password')
+	$query = "INSERT INTO userandcourserelations (UserID, CourseID) VALUES (
+	(SELECT UserID FROM users WHERE users.Username = '$username' AND users.Password = '$password')
 	,'$courseid');";
 
 	error_log("[".__FILE__."] Info: Emitting results", 0);

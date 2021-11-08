@@ -9,11 +9,13 @@
     $password = $conn->real_escape_string($_POST["password"]);
     $nickname = $conn->real_escape_string($_POST["nickname"]);
 
+    $segment = $conn->real_escape_string($_SERVER['QUERY_STRING']);
+
     // Create query.
     //
-    $query = "INSERT INTO Users (Username, Password, Nickname) VALUES ('$username','$password','$nickname');";
+    $query = "INSERT INTO users (Username, Password, Nickname, SegmentID) VALUES ('$username','$password','$nickname', (SELECT SegmentID FROM segments WHERE SegmentName = '$segment'));";
 
-	error_log("[".__FILE__."] Info: Emitting results", 0);
+    error_log("[".__FILE__."] Info: Emitting results", 0);
 
 	if (!headers_sent()) {
 		header('Cache-Control: no-store, max-age=0');
