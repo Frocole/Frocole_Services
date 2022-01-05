@@ -11,7 +11,7 @@
 
     // Create query.
     //
-    $query = "SELECT * FROM $db.Groups WHERE CourseID =
+    $query = "SELECT * FROM $db.groups WHERE CourseID =
 	(
 	SELECT CourseID
 	FROM courses
