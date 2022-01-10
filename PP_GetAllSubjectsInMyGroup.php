@@ -79,11 +79,13 @@
 	// Show data for each row.
     //
     $rows = array();
-	while($r = $sth->fetch_assoc())
-	{
-    	$rows[] = $r;
-	}
 
+    if ($sth) {
+		while($r = $sth->fetch_assoc())
+		{
+			$rows[] = $r;
+		}
+    }
 	error_log("[".__FILE__."] Info: Emitting results", 0);
 
 	if (!headers_sent()) {
