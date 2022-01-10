@@ -60,16 +60,16 @@
 
 		)
 		AND
-		Users.UserID IN
+		users.UserID IN
 		(
-			SELECT UserAndCourseRelations.UserID
-			FROM UserAndCourseRelations
-			WHERE UserAndCourseRelations.CourseID = '$courseid'
+			SELECT userandcourserelations.UserID
+			FROM userandcourserelations
+			WHERE userandcourserelations.CourseID = '$courseid'
 		)
-		AND NOT Users.UserID =
+		AND NOT users.UserID =
 		(
 			SELECT LeraarUserID
-			FROM Courses
+			FROM courses
 			WHERE CourseID = '$courseid'
 		)
 	";
