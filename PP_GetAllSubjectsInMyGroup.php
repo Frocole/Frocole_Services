@@ -60,16 +60,16 @@
 
 		)
 		AND
-		Users.UserID IN
+		users.UserID IN
 		(
-			SELECT UserAndCourseRelations.UserID
-			FROM UserAndCourseRelations
-			WHERE UserAndCourseRelations.CourseID = '$courseid'
+			SELECT userandcourserelations.UserID
+			FROM userandcourserelations
+			WHERE userandcourserelations.CourseID = '$courseid'
 		)
-		AND NOT Users.UserID =
+		AND NOT users.UserID =
 		(
 			SELECT LeraarUserID
-			FROM Courses
+			FROM courses
 			WHERE CourseID = '$courseid'
 		)
 	";
@@ -79,11 +79,13 @@
 	// Show data for each row.
     //
     $rows = array();
-	while($r = $sth->fetch_assoc())
-	{
-    	$rows[] = $r;
-	}
 
+    if ($sth) {
+		while($r = $sth->fetch_assoc())
+		{
+			$rows[] = $r;
+		}
+    }
 	error_log("[".__FILE__."] Info: Emitting results", 0);
 
 	if (!headers_sent()) {
