@@ -3,12 +3,17 @@
 #
 
 #
-# Disable web access to *.inc, *.sql and *.png files:
+# Disable web access to *.MD, *.inc, *.sql and *.png files:
 #
-#<FilesMatch  "\.(inc|sql|png)$>
-#	order allow,deny
-#	deny from all
-#</FilesMatch >
+<FilesMatch ".+\.(MD|inc|sql|png)$>
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny all
+  </IfModule>
+</FilesMatch>
 
 #
 # OR Disable web access to the config.inc file:
