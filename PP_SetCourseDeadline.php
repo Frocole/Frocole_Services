@@ -7,18 +7,18 @@
 	//
 	$username = 	$conn->real_escape_string($_POST["username"]);
 	$password = 	$conn->real_escape_string($_POST["password"]);
-	$groupid = 		$conn->real_escape_string($_POST["groupid"]);
-	$public = 		$conn->real_escape_string($_POST["public"]);
+	$courseid = 	$conn->real_escape_string($_POST["courseid"]);
+	$deadline = 	$conn->real_escape_string($_POST["deadline"]);
 
 	// 	Create query.
 	//
 	$query = "
-	UPDATE userandgrouprelations
-	SET Public = '$public'
+	UPDATE courses
+	SET Deadline = '$deadline'
 	WHERE
-	GroupID = '$groupid'
+	CourseID = '$courseid'
 	AND
-	UserID =
+	LeraarUserID =
 	(
 		SELECT UserID
 		FROM users
