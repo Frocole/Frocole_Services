@@ -14,7 +14,7 @@
 	// Create query.
 	//
 	$query = "
-	DELETE FROM paguidelines
+	DELETE FROM paguidelines	
 	Where CourseID =
 	(
 		SELECT CourseID
