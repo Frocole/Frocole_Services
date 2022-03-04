@@ -15,7 +15,7 @@
 	"
 	SELECT *
 	FROM paguidelines
-	WHERE CourseID = $courseid
+	WHERE CourseID = '$courseid'
 	AND CourseID IN
 	(
 		SELECT CourseID
@@ -25,7 +25,7 @@
 		(
 			SELECT users.UserID
 			FROM users
-			WHERE users.Username = '$username' AND users.Password = '$password'		
+			WHERE users.Username = '$username' AND users.Password = '$password'
 		)
 	)
 	";
