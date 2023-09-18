@@ -62,4 +62,11 @@
             trigger_error("The PHP setting 'expose_php' is enabled", E_USER_WARNING);
         }
     }
+    
+    if (!headers_sent()) {
+	// header('Cache-Control: no-store, max-age=0');
+	header('Access-Control-Allow-Method: POST');
+	header('Access-Control-Allow-Origin: *');
+    }
+    
 ?>

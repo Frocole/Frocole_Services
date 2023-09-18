@@ -16,6 +16,7 @@
 	error_log("[".__FILE__."] Info: Emitting results", 0);
 
 	if (!headers_sent()) {
+		header('Access-Control-Allow-Method: GET',0);
 		header('Cache-Control: no-store, max-age=0');
     }
 
