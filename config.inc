@@ -6,7 +6,7 @@
 
     // Setting develop to true disables some PHP related security checks.
     //
-    $develop = true;
+    $develop = false;
   
     // DEBUG SETTINGS.
     // echo "Database: $db";
