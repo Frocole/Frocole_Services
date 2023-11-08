@@ -12,12 +12,15 @@
 
 	// Create query.
 	//
+	//veg: use IN istead of = to allow multiple records in the subquery.
+	//veg: use extra filter to remove non current course groups.
+	//
 	$query =
 	"
 	SELECT t1.*
 	FROM feedbackitems t1 INNER JOIN ( SELECT MAX(FeedBackItemID) FeedBackItemID, Parameter FROM feedbackitems GROUP BY Parameter, FeedbackSuplierID, Subject) t2
 	ON t1.Parameter = t2.Parameter AND t1.FeedBackItemID = t2.FeedBackItemID
-	WHERE `GroupID` =
+	WHERE `GroupID` IN
 	(
 		SELECT GroupID
 		FROM userandcourserelations
@@ -29,6 +32,12 @@
 		)
 		AND CourseID = '$courseid'
 	)
+	AND `GroupID` IN
+	(
+		SELECT `GroupID`
+		FROM `groups`
+		WHERE `CourseID` = '$courseid'
+	)
 	AND `Subject` = '$subject'
 	";
 
@@ -37,11 +46,12 @@
 	// Show data for each row.
 	//
 	$rows = array();
-	while($r = $sth->fetch_assoc())
-	{
-		$rows[] = $r;
+	if ($sth) {
+		while($r = $sth->fetch_assoc())
+		{
+			$rows[] = $r;
+		}
 	}
-
 	error_log("[".__FILE__."] Info: Emitting results", 0);
 
 	if (!headers_sent()) {
