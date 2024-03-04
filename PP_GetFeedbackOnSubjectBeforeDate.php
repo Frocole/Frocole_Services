@@ -13,7 +13,7 @@
 
 	// Create query.
 	//
-	//veg: use IN istead of = to allow multiple records in the subquery.
+	//veg: use IN instead of = to allow multiple records in the subquery.
 	//veg: use extra filter to remove non current course groups.
 	//
 	$query =
